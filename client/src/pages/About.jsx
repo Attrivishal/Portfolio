@@ -229,171 +229,178 @@ export default function About() {
             </div>
           </motion.div>
 
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: '5rem', 
-            alignItems: 'center',
-            maxWidth: '1200px',
-            margin: '0 auto'
-          }}>
+          {/* Hero Grid - Responsive with Photo on Right Desktop, Top Mobile */}
+          <div 
+            className="about-hero-grid"
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: '1fr 1fr', 
+              gap: '5rem', 
+              alignItems: 'center',
+              maxWidth: '1200px',
+              margin: '0 auto'
+            }}
+          >
             {/* Left - Text Content */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.div variants={itemVariants}>
-                <motion.div 
-                  style={{ 
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
-                    gap: '0.5rem', 
-                    padding: '0.5rem 1.25rem', 
-                    background: 'rgba(6,182,212,0.1)', 
-                    border: '1px solid rgba(6,182,212,0.3)', 
-                    borderRadius: 999, 
-                    fontSize: '0.85rem', 
-                    color: '#22D3EE', 
-                    marginBottom: '2rem', 
-                    fontFamily: 'JetBrains Mono, monospace',
-                    backdropFilter: 'blur(10px)'
-                  }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: '0 0 30px rgba(6,182,212,0.3)'
-                  }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <motion.span
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  >
-                    📖
-                  </motion.span>
-                  About Me
-                </motion.div>
-              </motion.div>
-
-              <motion.h1
-                variants={itemVariants}
-                style={{ 
-                  fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
-                  marginBottom: '1rem', 
-                  letterSpacing: '-0.04em',
-                  lineHeight: 1.1,
-                  fontWeight: 800
-                }}
-              >
-                <motion.span 
-                  className="gradient-text-cyan"
-                  style={{ display: 'inline-block' }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                >
-                  Who Am
-                </motion.span>
-                <br />
-                <motion.span 
-                  style={{ color: '#F8FAFC', display: 'inline-block' }}
-                  whileHover={{ scale: 1.05, color: '#22D3EE' }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                >
-                  I?
-                </motion.span>
-              </motion.h1>
-
-              <motion.p
-                variants={itemVariants}
-                style={{ 
-                  color: '#94A3B8', 
-                  lineHeight: 1.8, 
-                  marginBottom: '1.5rem', 
-                  fontSize: '1.1rem' 
-                }}
-              >
-                I'm a passionate <strong style={{ color: '#22D3EE', fontWeight: 600 }}>MERN Stack Developer</strong> and{' '}
-                <strong style={{ color: '#A78BFA', fontWeight: 600 }}>Cloud Engineer</strong> from Punjab, India. 
-                Currently pursuing my BCA from Lovely Professional University with an impressive CGPA of 8.39/10.
-              </motion.p>
-
-              <motion.p
-                variants={itemVariants}
-                style={{ 
-                  color: '#94A3B8', 
-                  lineHeight: 1.8, 
-                  marginBottom: '2.5rem', 
-                  fontSize: '1.1rem' 
-                }}
-              >
-                My journey in tech started with curiosity about how websites work. Today, I build 
-                full-stack applications and cloud infrastructure that solve real-world problems.
-              </motion.p>
-
+            <div className="about-hero-text">
               <motion.div
-                variants={itemVariants}
-                style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
               >
-                {[
-                  { icon: '🎓', label: 'BCA Student', color: '#22D3EE' },
-                  { icon: '💻', label: '10+ Projects', color: '#A78BFA' },
-                  { icon: '☁️', label: 'Cloud Enthusiast', color: '#F472B6' }
-                ].map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    className="glass-card"
+                <motion.div variants={itemVariants}>
+                  <motion.div 
                     style={{ 
-                      padding: '1.25rem 1.75rem', 
-                      textAlign: 'center',
-                      position: 'relative',
-                      overflow: 'hidden'
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '0.5rem', 
+                      padding: '0.5rem 1.25rem', 
+                      background: 'rgba(6,182,212,0.1)', 
+                      border: '1px solid rgba(6,182,212,0.3)', 
+                      borderRadius: 999, 
+                      fontSize: '0.85rem', 
+                      color: '#22D3EE', 
+                      marginBottom: '2rem', 
+                      fontFamily: 'JetBrains Mono, monospace',
+                      backdropFilter: 'blur(10px)'
                     }}
                     whileHover={{ 
                       scale: 1.05,
-                      y: -5,
-                      boxShadow: `0 20px 40px rgba(${stat.color === '#22D3EE' ? '6,182,212' : stat.color === '#A78BFA' ? '167,139,250' : '244,114,182'}, 0.3)`
+                      boxShadow: '0 0 30px rgba(6,182,212,0.3)'
                     }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <motion.div
-                      style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: `linear-gradient(135deg, ${stat.color}20, transparent)`,
-                        opacity: 0
-                      }}
-                      whileHover={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <motion.div 
-                      style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}
-                      animate={{ 
-                        rotate: [0, 10, -10, 0],
-                        scale: [1, 1.1, 1]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: i * 0.3
-                      }}
+                    <motion.span
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                     >
-                      {stat.icon}
-                    </motion.div>
-                    <div style={{ 
-                      fontSize: '0.85rem', 
-                      color: '#94A3B8',
-                      fontWeight: 500,
-                      position: 'relative'
-                    }}>
-                      {stat.label}
-                    </div>
+                      📖
+                    </motion.span>
+                    About Me
                   </motion.div>
-                ))}
+                </motion.div>
+
+                <motion.h1
+                  variants={itemVariants}
+                  style={{ 
+                    fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
+                    marginBottom: '1rem', 
+                    letterSpacing: '-0.04em',
+                    lineHeight: 1.1,
+                    fontWeight: 800
+                  }}
+                >
+                  <motion.span 
+                    className="gradient-text-cyan"
+                    style={{ display: 'inline-block' }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                  >
+                    Who Am
+                  </motion.span>
+                  <br />
+                  <motion.span 
+                    style={{ color: '#F8FAFC', display: 'inline-block' }}
+                    whileHover={{ scale: 1.05, color: '#22D3EE' }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                  >
+                    I?
+                  </motion.span>
+                </motion.h1>
+
+                <motion.p
+                  variants={itemVariants}
+                  style={{ 
+                    color: '#94A3B8', 
+                    lineHeight: 1.8, 
+                    marginBottom: '1.5rem', 
+                    fontSize: '1.1rem' 
+                  }}
+                >
+                  I'm a passionate <strong style={{ color: '#22D3EE', fontWeight: 600 }}>MERN Stack Developer</strong> and{' '}
+                  <strong style={{ color: '#A78BFA', fontWeight: 600 }}>Cloud Engineer</strong> from Punjab, India. 
+                  Currently pursuing my BCA from Lovely Professional University with an impressive CGPA of 8.39/10.
+                </motion.p>
+
+                <motion.p
+                  variants={itemVariants}
+                  style={{ 
+                    color: '#94A3B8', 
+                    lineHeight: 1.8, 
+                    marginBottom: '2.5rem', 
+                    fontSize: '1.1rem' 
+                  }}
+                >
+                  My journey in tech started with curiosity about how websites work. Today, I build 
+                  full-stack applications and cloud infrastructure that solve real-world problems.
+                </motion.p>
+
+                <motion.div
+                  variants={itemVariants}
+                  style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}
+                >
+                  {[
+                    { icon: '🎓', label: 'BCA Student', color: '#22D3EE' },
+                    { icon: '💻', label: '10+ Projects', color: '#A78BFA' },
+                    { icon: '☁️', label: 'Cloud Enthusiast', color: '#F472B6' }
+                  ].map((stat, i) => (
+                    <motion.div
+                      key={stat.label}
+                      className="glass-card"
+                      style={{ 
+                        padding: '1.25rem 1.75rem', 
+                        textAlign: 'center',
+                        position: 'relative',
+                        overflow: 'hidden'
+                      }}
+                      whileHover={{ 
+                        scale: 1.05,
+                        y: -5,
+                        boxShadow: `0 20px 40px rgba(${stat.color === '#22D3EE' ? '6,182,212' : stat.color === '#A78BFA' ? '167,139,250' : '244,114,182'}, 0.3)`
+                      }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <motion.div
+                        style={{
+                          position: 'absolute',
+                          inset: 0,
+                          background: `linear-gradient(135deg, ${stat.color}20, transparent)`,
+                          opacity: 0
+                        }}
+                        whileHover={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.div 
+                        style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}
+                        animate={{ 
+                          rotate: [0, 10, -10, 0],
+                          scale: [1, 1.1, 1]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.3
+                        }}
+                      >
+                        {stat.icon}
+                      </motion.div>
+                      <div style={{ 
+                        fontSize: '0.85rem', 
+                        color: '#94A3B8',
+                        fontWeight: 500,
+                        position: 'relative'
+                      }}>
+                        {stat.label}
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
 
             {/* Right - Animated Photo */}
             <motion.div
+              className="about-hero-photo"
               initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
               animate={{ opacity: 1, scale: 1, rotateY: 0 }}
               transition={{ 
@@ -1177,6 +1184,31 @@ export default function About() {
       </section>
 
       <Footer />
+
+      <style>{`
+        /* Desktop: Photo on Right */
+        .about-hero-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 5rem;
+          align-items: center;
+        }
+        
+        /* Mobile: Photo on Top, Text Below */
+        @media (max-width: 768px) {
+          .about-hero-grid {
+            display: flex !important;
+            flex-direction: column !important;
+          }
+          .about-hero-photo {
+            order: -1 !important;
+            margin-bottom: 2rem;
+          }
+          .about-hero-text {
+            order: 2 !important;
+          }
+        }
+      `}</style>
     </>
   )
 }

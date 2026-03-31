@@ -191,167 +191,173 @@ export default function CloudRoom() {
             </div>
           </motion.div>
 
-          {/* Hero Grid */}
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: '5rem', 
-            alignItems: 'center',
-            maxWidth: '1200px',
-            margin: '0 auto'
-          }}>
+          {/* Hero Grid - Responsive with Photo on Right Desktop, Top Mobile */}
+          <div 
+            className="cloud-hero-grid"
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: '1fr 1fr', 
+              gap: '5rem', 
+              alignItems: 'center',
+              maxWidth: '1200px',
+              margin: '0 auto'
+            }}
+          >
             {/* Left - Text Content */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.div variants={itemVariants}>
-                <motion.div 
-                  style={{ 
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
-                    gap: '0.5rem', 
-                    padding: '0.5rem 1.25rem', 
-                    background: 'rgba(139,92,246,0.1)', 
-                    border: '1px solid rgba(139,92,246,0.3)', 
-                    borderRadius: 999, 
-                    fontSize: '0.85rem', 
-                    color: '#A78BFA', 
-                    marginBottom: '2rem', 
-                    fontFamily: 'JetBrains Mono, monospace',
-                    backdropFilter: 'blur(10px)'
-                  }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: '0 0 30px rgba(139,92,246,0.3)'
-                  }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <motion.span
-                    animate={{ 
-                      y: [-2, 2, -2],
-                      rotate: [0, 5, -5, 0]
+            <div className="cloud-hero-text">
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <motion.div variants={itemVariants}>
+                  <motion.div 
+                    style={{ 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '0.5rem', 
+                      padding: '0.5rem 1.25rem', 
+                      background: 'rgba(139,92,246,0.1)', 
+                      border: '1px solid rgba(139,92,246,0.3)', 
+                      borderRadius: 999, 
+                      fontSize: '0.85rem', 
+                      color: '#A78BFA', 
+                      marginBottom: '2rem', 
+                      fontFamily: 'JetBrains Mono, monospace',
+                      backdropFilter: 'blur(10px)'
                     }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      boxShadow: '0 0 30px rgba(139,92,246,0.3)'
+                    }}
+                    transition={{ type: "spring", stiffness: 300 }}
                   >
-                    🌩️
+                    <motion.span
+                      animate={{ 
+                        y: [-2, 2, -2],
+                        rotate: [0, 5, -5, 0]
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      🌩️
+                    </motion.span>
+                    Cloud Engineering Room
+                  </motion.div>
+                </motion.div>
+
+                <motion.h1
+                  variants={itemVariants}
+                  style={{ 
+                    fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
+                    marginBottom: '1rem', 
+                    letterSpacing: '-0.04em',
+                    lineHeight: 1.1,
+                    fontWeight: 800
+                  }}
+                >
+                  <motion.span 
+                    className="gradient-text-purple"
+                    style={{ display: 'inline-block' }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                  >
+                    Cloud
                   </motion.span>
-                  Cloud Engineering Room
+                  <br />
+                  <motion.span 
+                    style={{ color: '#F8FAFC', display: 'inline-block' }}
+                    whileHover={{ scale: 1.05, color: '#A78BFA' }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                  >
+                    Engineer
+                  </motion.span>
+                </motion.h1>
+
+                <motion.p
+                  variants={itemVariants}
+                  style={{ 
+                    fontFamily: 'JetBrains Mono, monospace', 
+                    color: '#A78BFA', 
+                    marginBottom: '1.5rem', 
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    letterSpacing: '0.02em'
+                  }}
+                >
+                  AWS • Linux • Postman • 
+                </motion.p>
+
+                <motion.p
+                  variants={itemVariants}
+                  style={{ 
+                    color: '#94A3B8', 
+                    lineHeight: 1.8, 
+                    marginBottom: '2.5rem', 
+                    fontSize: '1.1rem'
+                  }}
+                >
+                  I design and manage cloud infrastructure on AWS, automating deployments with GitHub Actions, 
+                  writing Infrastructure-as-Code with CloudFormation, and optimizing resource utilization for cost efficiency.
+                </motion.p>
+
+                <motion.div
+                  variants={itemVariants}
+                  style={{ display: 'flex', flexWrap: 'wrap', gap: '1.25rem' }}
+                >
+                  <motion.a 
+                    href="/Cloud-Resume.pdf" 
+                    download 
+                    className="btn btn-secondary"
+                    whileHover={{ scale: 1.05, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    style={{
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                  >
+                    <motion.span
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                      }}
+                      animate={{
+                        x: ['-100%', '100%']
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 3
+                      }}
+                    />
+                    <span style={{ position: 'relative', zIndex: 1 }}>⬇ Download Resume</span>
+                  </motion.a>
+
+                  <motion.a 
+                    href="https://github.com/Attrivishal" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-outline" 
+                    style={{ borderColor: 'rgba(139,92,246,0.5)', color: '#A78BFA' }}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -3,
+                      borderColor: 'rgba(139,92,246,1)',
+                      boxShadow: '0 10px 30px rgba(139,92,246,0.3)'
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    View GitHub
+                  </motion.a>
                 </motion.div>
               </motion.div>
-
-              <motion.h1
-                variants={itemVariants}
-                style={{ 
-                  fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
-                  marginBottom: '1rem', 
-                  letterSpacing: '-0.04em',
-                  lineHeight: 1.1,
-                  fontWeight: 800
-                }}
-              >
-                <motion.span 
-                  className="gradient-text-purple"
-                  style={{ display: 'inline-block' }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                >
-                  Cloud
-                </motion.span>
-                <br />
-                <motion.span 
-                  style={{ color: '#F8FAFC', display: 'inline-block' }}
-                  whileHover={{ scale: 1.05, color: '#A78BFA' }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                >
-                  Engineer
-                </motion.span>
-              </motion.h1>
-
-              <motion.p
-                variants={itemVariants}
-                style={{ 
-                  fontFamily: 'JetBrains Mono, monospace', 
-                  color: '#A78BFA', 
-                  marginBottom: '1.5rem', 
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.02em'
-                }}
-              >
-                AWS • Linux • Postman • 
-              </motion.p>
-
-              <motion.p
-                variants={itemVariants}
-                style={{ 
-                  color: '#94A3B8', 
-                  lineHeight: 1.8, 
-                  marginBottom: '2.5rem', 
-                  fontSize: '1.1rem'
-                }}
-              >
-                I design and manage cloud infrastructure on AWS, automating deployments with GitHub Actions, 
-                writing Infrastructure-as-Code with CloudFormation, and optimizing resource utilization for cost efficiency.
-              </motion.p>
-
-              <motion.div
-                variants={itemVariants}
-                style={{ display: 'flex', flexWrap: 'wrap', gap: '1.25rem' }}
-              >
-                <motion.a 
-                  href="/Cloud-Resume.pdf" 
-                  download 
-                  className="btn btn-secondary"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  style={{
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}
-                >
-                  <motion.span
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                    }}
-                    animate={{
-                      x: ['-100%', '100%']
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatDelay: 3
-                    }}
-                  />
-                  <span style={{ position: 'relative', zIndex: 1 }}>⬇ Download Resume</span>
-                </motion.a>
-
-                <motion.a 
-                  href="https://github.com/Attrivishal" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn btn-outline" 
-                  style={{ borderColor: 'rgba(139,92,246,0.5)', color: '#A78BFA' }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    y: -3,
-                    borderColor: 'rgba(139,92,246,1)',
-                    boxShadow: '0 10px 30px rgba(139,92,246,0.3)'
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  View GitHub
-                </motion.a>
-              </motion.div>
-            </motion.div>
+            </div>
 
             {/* Right - Animated Photo */}
             <motion.div 
+              className="cloud-hero-photo"
               initial={{ opacity: 0, scale: 0.8, rotateY: 30 }}
               animate={{ opacity: 1, scale: 1, rotateY: 0 }}
               transition={{ 
@@ -1238,10 +1244,26 @@ export default function CloudRoom() {
           75% { border-radius: 30% 70% 60% 40% / 70% 30% 40% 60%; }
         }
         
+        /* Desktop: Photo on Right */
+        .cloud-hero-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 5rem;
+          align-items: center;
+        }
+        
+        /* Mobile: Photo on Top, Text Below */
         @media (max-width: 768px) {
-          .container > div[style*="gridTemplateColumns"] {
+          .cloud-hero-grid {
             display: flex !important;
             flex-direction: column !important;
+          }
+          .cloud-hero-photo {
+            order: -1 !important;
+            margin-bottom: 2rem;
+          }
+          .cloud-hero-text {
+            order: 2 !important;
           }
         }
       `}</style>
