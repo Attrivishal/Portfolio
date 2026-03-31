@@ -7,7 +7,7 @@ export default function AboutEntry({ onComplete }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false)
-      if (onComplete) setTimeout(onComplete, 500)
+      if (onComplete) setTimeout(onComplete, 100)
     }, 3000)
     return () => clearTimeout(timer)
   }, [onComplete])
@@ -22,8 +22,7 @@ export default function AboutEntry({ onComplete }) {
   const tagline = 'Get to know the person behind the code'
   const description = 'BCA student, MERN Stack Developer, and Cloud Engineer passionate about building scalable solutions'
 
-  // Floating particles for About page
-  const particles = ['📖', '🎓', '💻', '🚀', '🌟', '⭐', '✨', '📚', '🏆', '💡', '🔧', '🎯']
+  const particles = ['📖', '🎓', '💻', '🚀', '🌟', '⭐', '✨', '📚', '🏆', '💡', '🔧', '🎯', '❤️', '🔥']
 
   return (
     <AnimatePresence>
@@ -39,9 +38,14 @@ export default function AboutEntry({ onComplete }) {
             left: 0,
             right: 0,
             bottom: 0,
-            zIndex: 9999,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 99999,
+            background: '#0A0A0A',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             pointerEvents: 'none',
-            overflow: 'hidden',
           }}
         >
           {/* Background Flash */}
@@ -123,19 +127,49 @@ export default function AboutEntry({ onComplete }) {
             </motion.div>
           ))}
 
+          {/* Floating Graduation Caps */}
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={`cap-${i}`}
+              initial={{ 
+                x: Math.random() * window.innerWidth,
+                y: -100,
+                opacity: 0
+              }}
+              animate={{ 
+                y: window.innerHeight + 100,
+                opacity: [0, 0.5, 0],
+                rotate: [0, 360]
+              }}
+              transition={{ 
+                duration: 3 + Math.random() * 4,
+                delay: Math.random() * 3,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              style={{
+                position: 'absolute',
+                fontSize: '1.2rem',
+                color: secondaryColor,
+                pointerEvents: 'none',
+              }}
+            >
+              🎓
+            </motion.div>
+          ))}
+
           {/* Main Content Container */}
           <motion.div
             initial={{ scale: 0.7, opacity: 0, y: 50 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4, type: 'spring', stiffness: 300 }}
             style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
+              position: 'relative',
               textAlign: 'center',
               width: '90%',
               maxWidth: 650,
+              margin: '0 auto',
+              zIndex: 100000,
             }}
           >
             {/* Glowing Border Box */}
@@ -154,7 +188,7 @@ export default function AboutEntry({ onComplete }) {
               }}
               transition={{ duration: 2, repeat: Infinity }}
               style={{
-                background: 'rgba(10,10,10,0.9)',
+                background: 'rgba(10,10,10,0.95)',
                 backdropFilter: 'blur(20px)',
                 borderRadius: 40,
                 padding: '3rem 2.5rem',
@@ -197,7 +231,7 @@ export default function AboutEntry({ onComplete }) {
                 </motion.div>
               </div>
 
-              {/* "WELCOME TO" Text */}
+              {/* "DISCOVER" Text */}
               <motion.p
                 initial={{ opacity: 0, letterSpacing: '20px' }}
                 animate={{ opacity: 1, letterSpacing: '4px' }}
@@ -317,6 +351,45 @@ export default function AboutEntry({ onComplete }) {
                 ))}
               </motion.div>
 
+              {/* Stats Animation */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2.2 }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '1.5rem',
+                  marginTop: '0.5rem',
+                  flexWrap: 'wrap'
+                }}
+              >
+                {[
+                  { value: '2+', label: 'Years Coding', icon: '💻' },
+                  { value: '29+', label: 'GitHub Repos', icon: '📁' },
+                  { value: '8.39', label: 'CGPA', icon: '🎓' },
+                  { value: '5+', label: 'Certs', icon: '📜' }
+                ].map((stat, i) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 2.3 + i * 0.1, type: 'spring' }}
+                    style={{
+                      textAlign: 'center',
+                      padding: '0.5rem 1rem',
+                      background: 'rgba(34,211,238,0.05)',
+                      borderRadius: 12,
+                      minWidth: 80
+                    }}
+                  >
+                    <div style={{ fontSize: '1.2rem' }}>{stat.icon}</div>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 700, color: primaryColor }}>{stat.value}</div>
+                    <div style={{ fontSize: '0.6rem', color: '#64748B' }}>{stat.label}</div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
               {/* Progress Indicator */}
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -326,7 +399,7 @@ export default function AboutEntry({ onComplete }) {
                   width: '100%',
                   height: 2,
                   background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
-                  marginTop: '1rem',
+                  marginTop: '1.5rem',
                   borderRadius: 2,
                 }}
               />

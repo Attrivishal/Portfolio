@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import SectionReveal from '../components/SectionReveal'
 import Footer from '../components/Footer'
+import AboutEntry from '../components/AboutEntry'
 
 const PHOTO = "/images/vishal-photo.jpg"
 
@@ -28,7 +29,7 @@ const education = [
     degree: 'Secondary Education (10th)',
     institution: 'Kendriya Vidyalaya Jindrah, Jammu',
     description: 'CBSE Board - Strong foundation in academics',
-    achievements: [ 'Computer Science Enthusiast'],
+    achievements: ['Computer Science Enthusiast'],
     color: 'pink'
   }
 ]
@@ -74,7 +75,9 @@ const achievements = [
 ]
 
 export default function About() {
+  const [showEntry, setShowEntry] = useState(true)
   const heroRef = useRef(null)
+  
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -82,19 +85,6 @@ export default function About() {
 
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-
-  // Floating animation variants
-  const floatingAnimation = {
-    initial: { y: 0 },
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  }
 
   // Stagger container
   const containerVariants = {
@@ -122,6 +112,10 @@ export default function About() {
 
   return (
     <>
+      {showEntry && (
+        <AboutEntry onComplete={() => setShowEntry(false)} />
+      )}
+
       {/* ─── ANIMATED HERO SECTION ──────────────────────────────────────────── */}
       <section 
         ref={heroRef}

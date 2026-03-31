@@ -5,11 +5,10 @@ import SectionReveal from '../components/SectionReveal'
 import StatCard from '../components/StatCard'
 import ContactForm from '../components/ContactForm'
 import Footer from '../components/Footer'
-import { useState } from 'react'  // Add this import
-import HomeEntry from '../components/HomeEntry'  // Add this import
+import { useState } from 'react'
+import HomeEntry from '../components/HomeEntry'
 
-// ─── Photo placeholder ─────────────────────────────────
-// Add your photo at: /images/vishal-photo.jpg
+// ─── Photo ─────────────────────────────────────────────
 const PHOTO = "/images/vishal-photo.jpg"
 
 const stats = [
@@ -61,6 +60,11 @@ export default function Home() {
 
   return (
     <>
+      {/* ─── HOME ENTRY EFFECT ──────────────────────────────────────────── */}
+      {showHomeEntry && (
+        <HomeEntry onComplete={handleHomeEntryComplete} />
+      )}
+
       {/* ─── HERO ──────────────────────────────────────────── */}
       <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: 80, position: 'relative', overflow: 'hidden' }}>
         {/* Orbs */}

@@ -15,9 +15,17 @@ export default function Navbar() {
   const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50)
+
+      const totalHeight = document.body.scrollHeight - window.innerHeight
+      const progress = (window.scrollY / totalHeight) * 100
+      setScrollProgress(progress)
+    }
+
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -35,52 +43,45 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 1000,
-        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
       }}
     >
-      {/* Background with smooth blur - NO BLACK LINE */}
+      {/* Background */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: scrolled 
-            ? 'rgba(10, 10, 10, 0.85)' 
-            : 'transparent',
+          background: scrolled ? 'rgba(10, 10, 10, 0.85)' : 'transparent',
           backdropFilter: scrolled ? 'blur(20px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           borderBottom: scrolled ? '1px solid rgba(6, 182, 212, 0.15)' : 'none',
+          transition: 'all 0.4s ease',
         }}
       />
-      
-      {/* Subtle glow when scrolled */}
-      {scrolled && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: -1,
-            left: '10%',
-            right: '10%',
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.5), transparent)',
-          }}
-        />
-      )}
 
-      <div className="container" style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'space-between', 
+      {/* Scroll Progress Bar */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          height: '2px',
+          width: `${scrollProgress}%`,
+          background: 'linear-gradient(90deg, #06B6D4, #8B5CF6)',
+        }}
+      />
+
+      <div className="container" style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         height: 80,
         position: 'relative',
         zIndex: 2,
       }}>
-        
+
         {/* Logo */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
           <motion.div
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 400 }}
             style={{
               width: 48,
               height: 48,
@@ -89,137 +90,119 @@ export default function Navbar() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '1.5rem',
               fontWeight: 800,
               color: '#0A0A0A',
-              fontFamily: 'Space Grotesk, sans-serif',
-              boxShadow: scrolled ? '0 2px 10px rgba(6,182,212,0.2)' : '0 4px 15px rgba(6,182,212,0.3)',
-              transition: 'box-shadow 0.3s ease',
             }}
           >
             V
           </motion.div>
-          
+
           <div>
-            <span style={{ 
-              fontFamily: 'Space Grotesk, sans-serif', 
-              fontWeight: 700, 
-              fontSize: '1.4rem', 
-              letterSpacing: '-0.02em',
-              color: '#F8FAFC',
-            }}>
-              Vishal
-            </span>
-            <span style={{ 
-              fontFamily: 'Space Grotesk, sans-serif', 
-              fontWeight: 700, 
-              fontSize: '1.4rem', 
-              letterSpacing: '-0.02em',
+            <span style={{ color: '#F8FAFC', fontWeight: 700 }}>Vishal</span>
+            <span style={{
+              marginLeft: 4,
+              fontWeight: 700,
               background: 'linear-gradient(135deg, #06B6D4, #8B5CF6)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              marginLeft: '4px',
             }}>
               Attri
             </span>
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="desktop-nav">
+        {/* Desktop Nav */}
+        <nav style={{ display: 'flex', alignItems: 'center', gap: 6 }} className="desktop-nav">
           {navLinks.map(link => (
-            <Link
-              key={link.path}
-              to={link.path}
-              style={{
-                padding: '8px 18px',
-                borderRadius: 40,
-                fontSize: '0.95rem',
-                fontWeight: 500,
-                color: pathname === link.path ? '#22D3EE' : '#94A3B8',
-                background: pathname === link.path ? 'rgba(6,182,212,0.1)' : 'transparent',
-                transition: 'all 0.3s ease',
-                textDecoration: 'none',
-              }}
-              onMouseEnter={e => { 
-                if (pathname !== link.path) { 
-                  e.target.style.color = '#F8FAFC'
-                  e.target.style.background = 'rgba(255,255,255,0.05)'
-                }}}
-              onMouseLeave={e => { 
-                if (pathname !== link.path) { 
-                  e.target.style.color = '#94A3B8'
-                  e.target.style.background = 'transparent'
-                }}}
-            >
-              {link.label}
-            </Link>
+            <div key={link.path} style={{ position: 'relative' }}>
+              
+              {/* Active Pill */}
+              {pathname === link.path && (
+                <motion.div
+                  layoutId="active-pill"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: 40,
+                    background: 'rgba(6,182,212,0.12)',
+                    zIndex: -1,
+                  }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                />
+              )}
+
+              <Link
+                to={link.path}
+                style={{
+                  padding: '8px 18px',
+                  borderRadius: 40,
+                  color: pathname === link.path ? '#22D3EE' : '#94A3B8',
+                  textDecoration: 'none',
+                  fontWeight: 500,
+                  position: 'relative',
+                }}
+                onMouseEnter={e => {
+                  if (pathname !== link.path) {
+                    e.currentTarget.style.color = '#F8FAFC'
+                  }
+                }}
+                onMouseLeave={e => {
+                  if (pathname !== link.path) {
+                    e.currentTarget.style.color = '#94A3B8'
+                  }
+                }}
+              >
+                {link.label}
+
+                {/* Underline */}
+                <span
+                  style={{
+                    position: 'absolute',
+                    bottom: 2,
+                    left: 10,
+                    right: 10,
+                    height: 2,
+                    borderRadius: 2,
+                    background: 'linear-gradient(90deg, #06B6D4, #8B5CF6)',
+                    transform: pathname === link.path ? 'scaleX(1)' : 'scaleX(0)',
+                    transformOrigin: 'left',
+                    transition: 'transform 0.3s ease',
+                  }}
+                />
+              </Link>
+            </div>
           ))}
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+
+          {/* CTA */}
+          <Link
+            to="/contact"
+            style={{
+              marginLeft: 10,
+              padding: '8px 20px',
+              borderRadius: 40,
+              background: 'linear-gradient(135deg, #06B6D4, #8B5CF6)',
+              color: '#0A0A0A',
+              fontWeight: 600,
+              textDecoration: 'none',
+            }}
           >
-            <Link 
-              to="/contact" 
-              style={{ 
-                marginLeft: '8px', 
-                padding: '8px 22px', 
-                fontSize: '0.95rem',
-                fontWeight: 600,
-                borderRadius: 40,
-                background: 'linear-gradient(135deg, #06B6D4, #8B5CF6)',
-                color: '#0A0A0A',
-                textDecoration: 'none',
-                display: 'inline-block',
-                boxShadow: '0 2px 8px rgba(6,182,212,0.3)',
-              }}
-            >
-              Hire Me ✉
-            </Link>
-          </motion.div>
+            Hire Me ✉
+          </Link>
         </nav>
 
-        {/* Mobile Hamburger */}
+        {/* Hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="hamburger"
-          aria-label="Toggle menu"
           style={{
             display: 'none',
+            padding: 10,
+            borderRadius: 10,
             background: 'rgba(6,182,212,0.1)',
             border: '1px solid rgba(6,182,212,0.2)',
-            borderRadius: 10,
-            cursor: 'pointer',
-            padding: '10px',
-            flexDirection: 'column',
-            gap: '6px',
-            alignItems: 'center',
           }}
         >
-          <div style={{
-            width: 24,
-            height: 2,
-            background: menuOpen ? '#22D3EE' : '#94A3B8',
-            borderRadius: 2,
-            transition: 'all 0.3s ease',
-            transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
-          }} />
-          <div style={{
-            width: 24,
-            height: 2,
-            background: menuOpen ? '#22D3EE' : '#94A3B8',
-            borderRadius: 2,
-            transition: 'all 0.3s ease',
-            opacity: menuOpen ? 0 : 1,
-          }} />
-          <div style={{
-            width: 24,
-            height: 2,
-            background: menuOpen ? '#22D3EE' : '#94A3B8',
-            borderRadius: 2,
-            transition: 'all 0.3s ease',
-            transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
-          }} />
+          ☰
         </button>
       </div>
 
@@ -230,36 +213,43 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
             style={{
               background: 'rgba(10,10,10,0.98)',
               backdropFilter: 'blur(20px)',
-              borderTop: '1px solid rgba(6,182,212,0.1)',
               overflow: 'hidden',
-              position: 'relative',
-              zIndex: 1,
             }}
           >
-            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <motion.div
+              style={{ padding: 20 }}
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: { transition: { staggerChildren: 0.08 } }
+              }}
+            >
               {navLinks.map(link => (
-                <Link
+                <motion.div
                   key={link.path}
-                  to={link.path}
-                  style={{
-                    padding: '12px 16px',
-                    borderRadius: 12,
-                    color: pathname === link.path ? '#22D3EE' : '#94A3B8',
-                    fontWeight: 600,
-                    fontSize: '1rem',
-                    textDecoration: 'none',
-                    background: pathname === link.path ? 'rgba(6,182,212,0.1)' : 'transparent',
-                    transition: 'all 0.3s ease',
+                  variants={{
+                    hidden: { opacity: 0, y: 10 },
+                    visible: { opacity: 1, y: 0 }
                   }}
                 >
-                  {link.label}
-                </Link>
+                  <Link
+                    to={link.path}
+                    style={{
+                      display: 'block',
+                      padding: 12,
+                      borderRadius: 10,
+                      color: '#94A3B8',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -267,7 +257,7 @@ export default function Navbar() {
       <style>{`
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
-          .hamburger { display: flex !important; }
+          .hamburger { display: block !important; }
         }
       `}</style>
     </motion.header>

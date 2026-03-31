@@ -1,8 +1,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import SectionReveal from '../components/SectionReveal'
 import ContactForm from '../components/ContactForm'
 import Footer from '../components/Footer'
+import ContactEntry from '../components/ContactEntry'
 
 const contactInfo = [
   { label: 'Email', value: 'vishalattri196@gmail.com', href: 'mailto:vishalattri196@gmail.com', icon: '✉️', color: 'cyan', delay: 0 },
@@ -19,6 +20,7 @@ const colorMap = {
 }
 
 export default function Contact() {
+  const [showEntry, setShowEntry] = useState(true)
   const heroRef = useRef(null)
   
   const { scrollYProgress } = useScroll({
@@ -51,6 +53,10 @@ export default function Contact() {
 
   return (
     <>
+      {showEntry && (
+        <ContactEntry onComplete={() => setShowEntry(false)} />
+      )}
+
       {/* ─── ENHANCED HERO SECTION ──────────────────────────────────────────── */}
       <section 
         ref={heroRef}

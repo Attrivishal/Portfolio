@@ -1,13 +1,19 @@
 import { motion } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Terminal from '../components/Terminal'
 import Footer from '../components/Footer'
+import TerminalEntry from '../components/TerminalEntry'
 
 export default function TerminalPage() {
+  const [showEntry, setShowEntry] = useState(true)
   const heroRef = useRef(null)
 
   return (
     <>
+      {showEntry && (
+        <TerminalEntry onComplete={() => setShowEntry(false)} />
+      )}
+
       {/* Hero Section */}
       <section 
         ref={heroRef}

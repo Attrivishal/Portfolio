@@ -7,7 +7,7 @@ export default function HomeEntry({ onComplete }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false)
-      if (onComplete) setTimeout(onComplete, 500)
+      if (onComplete) setTimeout(onComplete, 100)
     }, 3000)
     return () => clearTimeout(timer)
   }, [onComplete])
@@ -22,7 +22,6 @@ export default function HomeEntry({ onComplete }) {
   const tagline = 'Welcome to My Portfolio'
   const description = 'Building scalable applications AND the cloud infrastructure they run on'
 
-  // Floating particles for Home
   const particles = ['✨', '⭐', '💫', '🌟', '⚡', '☁️', '🚀', '💻', '🖥️', '📱', '🌐', '🔧']
 
   return (
@@ -39,9 +38,14 @@ export default function HomeEntry({ onComplete }) {
             left: 0,
             right: 0,
             bottom: 0,
-            zIndex: 9999,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 99999,
+            background: '#0A0A0A',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             pointerEvents: 'none',
-            overflow: 'hidden',
           }}
         >
           {/* Background Flash */}
@@ -129,13 +133,12 @@ export default function HomeEntry({ onComplete }) {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4, type: 'spring', stiffness: 300 }}
             style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
+              position: 'relative',
               textAlign: 'center',
               width: '90%',
               maxWidth: 650,
+              margin: '0 auto',
+              zIndex: 100000,
             }}
           >
             {/* Glowing Border Box */}
@@ -154,7 +157,7 @@ export default function HomeEntry({ onComplete }) {
               }}
               transition={{ duration: 2, repeat: Infinity }}
               style={{
-                background: 'rgba(10,10,10,0.9)',
+                background: 'rgba(10,10,10,0.95)',
                 backdropFilter: 'blur(20px)',
                 borderRadius: 40,
                 padding: '3rem 2.5rem',

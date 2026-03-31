@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-export default function RoomEntry({ type, onComplete }) {
+export default function TerminalEntry({ onComplete }) {
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
@@ -12,26 +12,17 @@ export default function RoomEntry({ type, onComplete }) {
     return () => clearTimeout(timer)
   }, [onComplete])
 
-  const isMern = type === 'mern'
-  const primaryColor = isMern ? '#06B6D4' : '#8B5CF6'
-  const secondaryColor = isMern ? '#22D3EE' : '#A78BFA'
-  const accentColor = isMern ? '#EC4899' : '#F59E0B'
-  const glowColor = isMern ? 'rgba(6,182,212,0.3)' : 'rgba(139,92,246,0.3)'
-  const icon = isMern ? '⚡' : '☁️'
-  const roomName = isMern ? 'MERN STACK ROOM' : 'CLOUD ENGINEER ROOM'
-  const subtitle = isMern 
-    ? 'React • Node • Express • MongoDB' 
-    : 'AWS • Linux • Docker • Postman'
-  const tagline = isMern 
-    ? 'Welcome to the MERN Zone' 
-    : 'Welcome to the Cloud Zone'
-  const description = isMern
-    ? 'Full-stack JavaScript development with modern frameworks'
-    : 'Cloud infrastructure, DevOps, and scalable solutions'
+  const primaryColor = '#22D3EE'
+  const secondaryColor = '#A78BFA'
+  const accentColor = '#F472B6'
+  const glowColor = 'rgba(34,211,238,0.3)'
+  const icon = '💻'
+  const title = 'TERMINAL PLAYGROUND'
+  const subtitle = 'Interactive • Fun • Learn'
+  const tagline = 'Ready to play?'
+  const description = 'Practice Linux, Windows, Git, Docker, and AWS commands in a fun interactive terminal'
 
-  const mernParticles = ['{ }', '< />', '</>', '() =>', '{}', 'import', 'from', 'const', '=>', 'useState', 'useEffect']
-  const cloudParticles = ['☁️', '☁️', '🌩️', '💨', '☁️', '🌥️', '⛅', '☁️', '🖥️', '🗄️', 'λ']
-  const particles = isMern ? mernParticles : cloudParticles
+  const particles = ['$', '>', '_', '~', '/', '#', '!', '@', '%', '&', '*', '()', '{}', '[]']
 
   return (
     <AnimatePresence>
@@ -115,7 +106,7 @@ export default function RoomEntry({ type, onComplete }) {
                 y: -100,
                 opacity: [0, 0.8, 0],
                 scale: [0.5, 1.3, 0.5],
-                rotate: [0, isMern ? 360 : -20]
+                rotate: [0, 360]
               }}
               transition={{ 
                 duration: 2 + Math.random() * 1.5,
@@ -125,7 +116,7 @@ export default function RoomEntry({ type, onComplete }) {
               }}
               style={{
                 position: 'absolute',
-                fontSize: isMern ? '1rem' : '1.5rem',
+                fontSize: '1.2rem',
                 color: primaryColor,
                 fontFamily: 'JetBrains Mono, monospace',
                 textShadow: `0 0 15px ${primaryColor}`,
@@ -133,6 +124,37 @@ export default function RoomEntry({ type, onComplete }) {
               }}
             >
               {particle}
+            </motion.div>
+          ))}
+
+          {/* Code Rain Effect */}
+          {[...Array(30)].map((_, i) => (
+            <motion.div
+              key={`code-${i}`}
+              initial={{ 
+                x: Math.random() * window.innerWidth,
+                y: -100,
+                opacity: 0
+              }}
+              animate={{ 
+                y: window.innerHeight + 100,
+                opacity: [0, 0.5, 0]
+              }}
+              transition={{ 
+                duration: 3 + Math.random() * 4,
+                delay: Math.random() * 3,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              style={{
+                position: 'absolute',
+                fontSize: '0.9rem',
+                color: secondaryColor,
+                fontFamily: 'JetBrains Mono, monospace',
+                pointerEvents: 'none',
+              }}
+            >
+              {['$', '>', '_', 'ls', 'cd', 'pwd', 'echo', 'cat', 'grep'][Math.floor(Math.random() * 9)]}
             </motion.div>
           ))}
 
@@ -209,7 +231,7 @@ export default function RoomEntry({ type, onComplete }) {
                 </motion.div>
               </div>
 
-              {/* "WELCOME TO" Text */}
+              {/* "LAUNCHING" Text */}
               <motion.p
                 initial={{ opacity: 0, letterSpacing: '20px' }}
                 animate={{ opacity: 1, letterSpacing: '4px' }}
@@ -223,10 +245,10 @@ export default function RoomEntry({ type, onComplete }) {
                   marginBottom: '0.5rem',
                 }}
               >
-                WELCOME TO
+                LAUNCHING
               </motion.p>
 
-              {/* Room Name with Typewriter Effect */}
+              {/* Title with Typewriter Effect */}
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: '100%' }}
@@ -244,7 +266,7 @@ export default function RoomEntry({ type, onComplete }) {
                   letterSpacing: '-0.02em',
                   fontFamily: 'Space Grotesk, sans-serif',
                 }}>
-                  {roomName}
+                  {title}
                 </h1>
               </motion.div>
 
@@ -295,7 +317,7 @@ export default function RoomEntry({ type, onComplete }) {
                 {description}
               </motion.p>
 
-              {/* Tech Stack Tags */}
+              {/* Command Tags */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -308,15 +330,15 @@ export default function RoomEntry({ type, onComplete }) {
                   marginBottom: '1.5rem',
                 }}
               >
-                {subtitle.split(' • ').map((tech, i) => (
+                {subtitle.split(' • ').map((item, i) => (
                   <motion.span
-                    key={tech}
+                    key={item}
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 2 + i * 0.05, type: 'spring' }}
                     style={{
                       padding: '0.3rem 0.8rem',
-                      background: `rgba(${isMern ? '6,182,212' : '139,92,246'}, 0.1)`,
+                      background: `rgba(34,211,238, 0.1)`,
                       border: `1px solid ${primaryColor}40`,
                       borderRadius: 20,
                       fontSize: '0.7rem',
@@ -324,9 +346,39 @@ export default function RoomEntry({ type, onComplete }) {
                       fontFamily: 'JetBrains Mono, monospace',
                     }}
                   >
-                    {tech}
+                    {item}
                   </motion.span>
                 ))}
+              </motion.div>
+
+              {/* Terminal Prompt Animation */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2.2 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  marginTop: '0.5rem',
+                  padding: '0.5rem',
+                  background: 'rgba(0,0,0,0.3)',
+                  borderRadius: 8,
+                  maxWidth: 300,
+                  marginLeft: 'auto',
+                  marginRight: 'auto'
+                }}
+              >
+                <span style={{ color: '#22D3EE' }}>➜</span>
+                <span style={{ color: '#A78BFA' }}>~/playground</span>
+                <motion.span
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  style={{ color: '#F8FAFC' }}
+                >
+                  _
+                </motion.span>
               </motion.div>
 
               {/* Progress Indicator */}
