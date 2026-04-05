@@ -130,8 +130,6 @@ Built with ❤️
 ---
 
 ## 📋 How to Save
-
-```bash
 cd ~/desktop/portfolio
 
 # Create README.md file
