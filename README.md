@@ -1,152 +1,90 @@
-# Vishal Attri Portfolio
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0a66c2&height=100&section=header"/>
+</div>
 
-> MERN Stack Developer & Cloud Engineer
+<div align="center">
+  
+# 🚀 Vishal Attri
+### ☁️ Cloud Engineer (Aspirant) | 💻 Full Stack Developer
 
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
-[![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)](https://expressjs.com/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=500&color=0a66c2&center=true&width=500&lines=Cloud+Engineer+in+the+making;Full+Stack+Developer;Building+scalable+systems;Always+learning+new+things!" />
+</p>
 
-## 📋 About
+[![GitHub followers](https://img.shields.io/github/followers/Attrivishal?style=for-the-badge&logo=github&color=0a66c2)](https://github.com/Attrivishal)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0a66c2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/vishalattri)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-ff6b6b?style=for-the-badge&logo=google-chrome)](http://13.222.120.250)
 
-My professional portfolio showcasing expertise in **MERN Stack Development** and **Cloud Engineering**. Features two specialized rooms with distinct identities, contact form with MongoDB storage, and premium UI/UX.
+</div>
 
-## ✨ Features
+---
 
-| Feature | Description |
-|---------|-------------|
-| 🎨 Two Specialized Rooms | MERN Stack & Cloud Engineering |
-| 📬 Contact Form | Stores messages in MongoDB |
-| 🖱️ Custom Cursor | Smooth interactive cursor effects |
-| ✨ Smooth Animations | Framer Motion powered |
-| 📱 Fully Responsive | Works on all devices |
-| 🌙 Dark Theme | Premium glassmorphism design |
-| ⚡ Fast Performance | Built with Vite |
+## 👨‍💻 About Me
+💻 BCA Student | Cloud Enthusiast | Full Stack Developer  
+🌱 Currently learning AWS & System Design  
+🎯 Goal: Become a Cloud Engineer building scalable solutions  
+⚡ I enjoy solving real-world problems using technology
+
+---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- React.js - UI Framework
-- Vite - Build Tool
-- Tailwind CSS - Styling
-- Framer Motion - Animations
-- React Router - Navigation
-- Axios - API Calls
+### 💻 Development
+React.js | Next.js | Node.js | Express.js
 
-### Backend
-- Node.js - Runtime
-- Express.js - Web Framework
-- MongoDB - Database
-- Mongoose - ODM
+### 🗄️ Database
+MongoDB
 
-### Tools
-- Git & GitHub
-- Postman
-- VS Code
-- MongoDB Compass
+### 🎨 Frontend
+HTML | CSS | Tailwind CSS
 
-## 📁 Project Structure
-portfolio/
-├── client/ # React Frontend
-│ ├── src/
-│ │ ├── components/ # Reusable components
-│ │ ├── pages/ # Page components
-│ │ ├── services/ # API services
-│ │ └── App.jsx
-│ └── public/ # Static assets
-├── server/ # Node.js Backend
-│ ├── models/ # MongoDB schemas
-│ ├── routes/ # API routes
-│ └── server.js
-└── README.md
-
-text
-
-## 🚀 Local Setup
-
-### Prerequisites
-
-- Node.js (v18 or higher)
-- MongoDB (local or Atlas)
-- Git
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/Attrivishal/Portfolio.git
-cd Portfolio
-
-# Install backend dependencies
-cd server
-npm install
-
-# Install frontend dependencies
-cd ../client
-npm install
-
-# Setup environment variables
-cd ../server
-cp .env.example .env
-
-# Start MongoDB (if using local)
-brew services start mongodb-community
-
-# Run backend
-node server.js
-
-# Run frontend (new terminal)
-cd client
-npm run dev
-Environment Variables
-
-Create .env in server/ folder:
-
-env
-PORT=5001
-MONGODB_URI=mongodb://localhost:27017/portfolio
-FRONTEND_URL=http://localhost:5173
-📸 Pages
-
-Page	Route	Description
-Home	/	Landing page with two room cards
-MERN Room	/mern-room	MERN stack projects & skills
-Cloud Room	/cloud-room	Cloud engineering expertise
-Contact	/contact	Working contact form
-📧 Contact
-
-Email: vishalattri196@gmail.com
-GitHub: @Attrivishal
-LinkedIn: Vishal Attri
-📄 License
-
-MIT © Vishal Attri
-
-<<<<<<< HEAD
-Built with ❤️ using MERN Stack
-=======
-Built with ❤️ 
->>>>>>> 359b9f791d9c763d738aaf6b9331e4c2c7678321
-
-text
+### ☁️ Cloud & Tools
+AWS | Git & GitHub | Postman | VS Code
 
 ---
-<<<<<<< HEAD
 
-## 📋 How to Save
+## 📂 Projects
 
-```bash
-cd ~/desktop/portfolio
+### 🔹 PipelineIQ — CRM & Lead Management System
+Built a full-stack application to manage leads | Implemented pipeline tracking for lead stages | Developed REST APIs for CRUD operations | Added JWT authentication for secure login  
+🔗 http://pipelineiq-bucket.s3-website-us-east-1.amazonaws.com
 
-# Create README.md file
-cat > README.md << 'EOF'
-[Paste the markdown content above]
-EOF
-Or open in VS Code:
+### 🔹 Cloud Intelligence Platform — Cost Optimization Dashboard
+Built a dashboard to monitor cloud usage | Identifies unused resources and reduces cost | Developed backend APIs for data processing | Focused on cloud efficiency and optimization  
+🔗 https://github.com/Attrivishal/cloud-intelligence
 
-bash
-code ~/desktop/portfolio/README.md
+---
 
-=======
->>>>>>> 359b9f791d9c763d738aaf6b9331e4c2c7678321
+## 📈 GitHub Stats
+
+<p align="center">
+  <img width="48%" src="https://github-readme-streak-stats.herokuapp.com/?user=Attrivishal&theme=radical" />
+</p>
+
+---
+
+## 🎯 Current Focus
+Learning Cloud Computing ☁️ | Improving Backend & APIs | Building scalable applications
+
+---
+
+## 📫 Connect With Me
+
+
+<p align="center">
+  <a href="https://linkedin.com/in/vishalattri">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+  <a href="https://github.com/Attrivishal">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
+  </a>
+</p>
+
+---
+
+## 💡 My Philosophy
+> “Build with code. Optimize with cloud. Scale with purpose.”
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0a66c2&height=80&section=footer"/>
+</p>
