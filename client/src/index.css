@@ -53,6 +53,17 @@
   --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ---------- Purple Theme Overrides ---------- */
+.theme-purple {
+  --cyan-400: var(--purple-400);
+  --cyan-500: var(--purple-500);
+  --border-default: rgba(139, 92, 246, 0.2);
+  --border-glow: rgba(139, 92, 246, 0.6);
+  --shadow-cyan: var(--shadow-purple);
+  --gradient-cyan: var(--gradient-purple);
+  --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.2);
+}
+
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -137,6 +148,29 @@ code, pre {
   border-color: rgba(167, 139, 250, 0.4);
 }
 
+/* ---------- Cursor Trail ---------- */
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+.trail-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--cyan-400);
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--cyan-400);
+}
+
 /* ---------- Layout Utilities ---------- */
 .container {
   max-width: var(--container-max);
@@ -177,19 +211,71 @@ code, pre {
 }
 
 /* ---------- Glassmorphism Card ---------- */
-.glass-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-xl);
-  transition: var(--transition);
-}
-
 .glass-card:hover {
   border-color: var(--border-glow);
   box-shadow: var(--shadow-glow);
   transform: translateY(-4px);
+}
+
+/* ---------- Bento Grid System ---------- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.bento-item {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-item.large { grid-column: span 2; grid-row: span 2; }
+.bento-item.wide { grid-column: span 2; grid-row: span 1; }
+.bento-item.tall { grid-column: span 1; grid-row: span 2; }
+.bento-item.small { grid-column: span 1; grid-row: span 1; }
+
+@media (max-width: 1024px) {
+  .bento-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+  .bento-item.large, .bento-item.wide, .bento-item.tall { grid-column: span 1; grid-row: span 1; }
+}
+
+/* ---------- Advanced Visual Effects ---------- */
+.glass-refraction {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-refraction::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 40%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}
+
+.noise-filter {
+  position: relative;
+}
+
+.noise-filter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* ---------- Buttons ---------- */
@@ -573,11 +659,7 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
-<<<<<<< HEAD
-
-
-/* ---------- star background ---------- */
-/* Simple CSS Stars Background */
+/* ---------- Star Background ---------- */
 body::before {
   content: '';
   position: fixed;
@@ -598,18 +680,16 @@ body::before {
     radial-gradient(2px 2px at 750px 800px, #fff, rgba(0,0,0,0));
   background-size: 200px 200px;
   background-repeat: repeat;
-  opacity: 0.4;
+  opacity: 0.15;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
-
-
-/* Refreshing Animated Gradient Background */
+/* ---------- Global Animated Background ---------- */
 body {
   background: linear-gradient(135deg, #0A0A0A 0%, #0F172A 25%, #1E1B4B 50%, #0F172A 75%, #0A0A0A 100%);
   background-size: 200% 200%;
-  animation: gradientShift 10s ease infinite;
+  animation: gradientShift 15s ease infinite;
   position: relative;
 }
 
@@ -619,33 +699,19 @@ body {
   100% { background-position: 0% 0%; }
 }
 
-/* Floating glowing orbs */
-body::before {
-  content: '';
-  position: fixed;
-  top: 10%;
-  left: -20%;
-  width: 80%;
-  height: 80%;
-  background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: floatOrb 20s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
+/* ---------- Floating Glow Orbs ---------- */
 body::after {
   content: '';
   position: fixed;
-  bottom: 10%;
-  right: -20%;
-  width: 80%;
-  height: 80%;
-  background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%);
+  bottom: -10%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
   border-radius: 50%;
   animation: floatOrb 25s ease-in-out infinite reverse;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
 @keyframes floatOrb {
@@ -653,24 +719,3 @@ body::after {
   33% { transform: translate(5%, 5%) scale(1.05); }
   66% { transform: translate(-5%, -5%) scale(0.95); }
 }
-
-/* Floating particles effect */
-.particle {
-  position: fixed;
-  width: 3px;
-  height: 3px;
-  background: rgba(6,182,212,0.4);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  animation: floatParticle 8s linear infinite;
-}
-
-@keyframes floatParticle {
-  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-  10% { opacity: 0.5; }
-  90% { opacity: 0.5; }
-  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
-}
-=======
->>>>>>> 8e8dcc0a6b257df1c55d209d4f88194a70b3e92a
