@@ -10,9 +10,15 @@ export default function StatCard({ value, suffix = '', label, icon, delay = 0, c
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 100 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay }}
+      transition={{ 
+        type: 'spring', 
+        stiffness: 100, 
+        damping: 10, 
+        mass: 1,
+        delay 
+      }}
       className="glass-card"
       style={{ padding: '2rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}
     >
