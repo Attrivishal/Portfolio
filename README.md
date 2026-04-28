@@ -97,11 +97,19 @@ Open the app on the local Vite URL shown in your terminal.
 
 ## Docker
 
-Build and run the app using Docker:
+Use the published Docker Hub image or build locally.
+
+### Pull from Docker Hub
+
+```bash
+docker pull vishalattri/portfolio:latest
+docker run -d -p 3000:80 vishalattri/portfolio:latest
+```
+
+### Build locally
 
 ```bash
 docker build -t portfolio-app .
-
 docker run -d -p 3000:80 portfolio-app
 ```
 
