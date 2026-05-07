@@ -148,7 +148,7 @@ The backend expects the following variables in `server/.env`:
 
 - GitHub: https://github.com/Attrivishal
 - LinkedIn: https://linkedin.com/in/vishalattri
-- Portfolio: http://13.222.120.250
+- Portfolio: Currentnly not working (due to AWS Billing issues)
 
 ---
 
